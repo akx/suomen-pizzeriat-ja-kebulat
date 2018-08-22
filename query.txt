@@ -1,0 +1,17 @@
+[out:json];
+
+(
+  area["ISO3166-1"="FI"][admin_level=2];
+) -> .fi;
+
+(
+  node[cuisine~"kebab|pizza"](area.fi);
+);
+out body qt;
+
+(
+  rel[admin_level=8](area.fi);
+);
+out body qt;
+>;
+out body qt;
