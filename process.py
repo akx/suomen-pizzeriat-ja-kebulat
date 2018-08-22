@@ -1,5 +1,6 @@
 from operator import itemgetter
 from shapely.geometry import Point, Polygon
+import argparse
 import csv
 import pyproj
 import sys
@@ -14,64 +15,96 @@ def to_etrs(*, lat, lon):
 	return pyproj.transform(p1, p2, lat, lon)
 
 
+def get_name(tags):
+	if 'name' in tags:
+		return tags['name']
+	for tag, value in tags.items():
+		if tag.startswith('name:'):
+			return value
 
-with open('kebulat.osm-json', 'rb') as infp:
-    elements = ujson.load(infp)['elements']
 
-nodes = {n['id']: n for n in elements if n['type'] == 'node'}
-ways = {n['id']: n for n in elements if n['type'] == 'way'}
+def read_bounds_and_restaurants():
 
-bounds = {}
-restaurants = {}
+	with open('kebulat.osm-json', 'rb') as infp:
+		elements = ujson.load(infp)['elements']
 
-for el in tqdm.tqdm(elements, desc='parsing elements'):
-	tags = el.get('tags', {})
-	if el['type'] == 'node' and tags.get('cuisine'):
-		x, y = to_etrs(lat=el['lat'], lon=el['lon'])
-		restaurants[el['id']] = {
-			'_orig': el,
-			'name': tags.get('name'),
-			'pt': Point([x, y]),
-		}
-		continue
-	if el['type'] == 'relation' and tags.get('admin_level') == '8':
-		points = []
-		population = None
-		admin_centre = None
-		for memb in el['members']:
-			if memb['type'] == 'way' and memb['role'] == 'outer':
-				way = ways[memb['ref']]
-				points.extend((
-					to_etrs(lat=n['lat'], lon=n['lon'])
-					for n
-					in [nodes[id] for id in way['nodes']]
+	nodes = {n['id']: n for n in elements if n['type'] == 'node'}
+	ways = {n['id']: n for n in elements if n['type'] == 'way'}
+
+	bounds = {}
+	restaurants = {}
+
+	for el in tqdm.tqdm(elements, desc='parsing elements'):
+		tags = el.get('tags', {})
+		if el['type'] == 'node' and tags.get('cuisine'):
+			x, y = to_etrs(lat=el['lat'], lon=el['lon'])
+			restaurants[el['id']] = {
+				'_orig': el,
+				'id': el['id'],
+				'latlon': (el['lat'], el['lon']),
+				'name': get_name(tags),
+				'pt': Point([x, y]),
+			}
+			continue
+		if el['type'] == 'relation' and tags.get('admin_level') == '8':
+			points = []
+			population = None
+			admin_centre = None
+			for memb in el['members']:
+				if memb['type'] == 'way' and memb['role'] == 'outer':
+					way = ways[memb['ref']]
+					points.extend((
+						to_etrs(lat=n['lat'], lon=n['lon'])
+						for n
+						in [nodes[id] for id in way['nodes']]
+					))
+				if memb['role'] == 'admin_centre' or memb['role'] == 'label':
+					admin_centre = nodes[memb['ref']]
+					population = (admin_centre.get('tags', {}).get('population') or population)
+
+			bounds[el['id']] = {
+				'_orig': el,
+				'name': get_name(tags),
+				'poly': Polygon(points),
+				'pop': population,
+			}
+
+	for bound in tqdm.tqdm(bounds.values(), desc='determining containment'):
+		poly = bound['poly']
+		matches = []
+		for restaurant in restaurants.values():
+			if poly.contains(restaurant['pt']):
+				matches.append(restaurant)
+				#print(bound['name'], restaurant['name'])
+		bound['restaurants'] = matches
+
+	return (bounds, restaurants)
+
+def main():
+	ap = argparse.ArgumentParser()
+	ap.add_argument('--mode', default='summary', choices=('summary', 'full'))
+	args = ap.parse_args()
+	bounds, restaurants = read_bounds_and_restaurants()
+	
+	cw = csv.writer(sys.stdout)
+
+	if args.mode == 'summary':
+		for bound in sorted(bounds.values(), key=itemgetter('name')):
+			cw.writerow((
+				bound['name'],
+				bound['pop'],
+				len(bound['restaurants']),
+			))
+	elif args.mode == 'full':
+		for bound in sorted(bounds.values(), key=itemgetter('name')):
+			for restaurant in bound['restaurants']:
+				cw.writerow((
+					bound['name'],
+					restaurant['name'] or restaurant['id'],
+					restaurant['latlon'][0],
+					restaurant['latlon'][1],
 				))
-			if memb['role'] == 'admin_centre' or memb['role'] == 'label':
-				admin_centre = nodes[memb['ref']]
-				population = (admin_centre.get('tags', {}).get('population') or population)
 
-		bounds[el['id']] = {
-			'_orig': el,
-			'name': tags.get('name'),
-			'poly': Polygon(points),
-			'pop': population,
-		}
+if __name__ == '__main__':
+	main()
 
-for bound in tqdm.tqdm(bounds.values(), desc='determining containment'):
-	poly = bound['poly']
-	matches = []
-	for restaurant in restaurants.values():
-		if poly.contains(restaurant['pt']):
-			matches.append(restaurant)
-			#print(bound['name'], restaurant['name'])
-	bound['restaurants'] = matches
-
-
-cw = csv.writer(sys.stdout)
-
-for bound in sorted(bounds.values(), key=itemgetter('name')):
-	cw.writerow((
-		bound['name'],
-		bound['pop'],
-		len(bound['restaurants']),
-	))
