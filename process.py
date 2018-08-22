@@ -23,6 +23,31 @@ def get_name(tags):
 			return value
 
 
+def node_list_to_poly(nodes, node_id_list):
+	return [
+		to_etrs(lat=n['lat'], lon=n['lon'])
+		for n
+		in [nodes[id] for id in node_id_list]
+	]
+
+
+def is_restaurant(tags):
+	if 'cuisine' in tags:
+		return True
+	name = (get_name(tags) or '').lower()
+	if 'pizza' in name or 'kebab' in name:
+		return True
+	return False
+
+
+def get_poly_center(coords):  # hardly accurate
+	x_sum = y_sum = 0
+	for x, y in coords:
+		x_sum += x
+		y_sum += y
+	return (x_sum / len(coords), y_sum / len(coords))
+
+
 def read_bounds_and_restaurants():
 
 	with open('kebulat.osm-json', 'rb') as infp:
@@ -36,12 +61,19 @@ def read_bounds_and_restaurants():
 
 	for el in tqdm.tqdm(elements, desc='parsing elements'):
 		tags = el.get('tags', {})
-		if el['type'] == 'node' and tags.get('cuisine'):
-			x, y = to_etrs(lat=el['lat'], lon=el['lon'])
+		if is_restaurant(tags):
+			if el['type'] == 'node':
+				x, y = to_etrs(lat=el['lat'], lon=el['lon'])
+				latlon = (el['lat'], el['lon'])
+			else:
+				coords = node_list_to_poly(nodes, el['nodes'])
+				x, y = get_poly_center(coords)
+				latlon = None
+
 			restaurants[el['id']] = {
 				'_orig': el,
 				'id': el['id'],
-				'latlon': (el['lat'], el['lon']),
+				'latlon': latlon,
 				'name': get_name(tags),
 				'pt': Point([x, y]),
 			}
@@ -53,11 +85,7 @@ def read_bounds_and_restaurants():
 			for memb in el['members']:
 				if memb['type'] == 'way' and memb['role'] == 'outer':
 					way = ways[memb['ref']]
-					points.extend((
-						to_etrs(lat=n['lat'], lon=n['lon'])
-						for n
-						in [nodes[id] for id in way['nodes']]
-					))
+					points.extend(node_list_to_poly(nodes, way['nodes']))
 				if memb['role'] == 'admin_centre' or memb['role'] == 'label':
 					admin_centre = nodes[memb['ref']]
 					population = (admin_centre.get('tags', {}).get('population') or population)
@@ -98,11 +126,12 @@ def main():
 	elif args.mode == 'full':
 		for bound in sorted(bounds.values(), key=itemgetter('name')):
 			for restaurant in bound['restaurants']:
+				latlon = restaurant['latlon']
 				cw.writerow((
 					bound['name'],
 					restaurant['name'] or restaurant['id'],
-					restaurant['latlon'][0],
-					restaurant['latlon'][1],
+					(latlon[0] if latlon else None),
+					(latlon[1] if latlon else None),
 				))
 
 if __name__ == '__main__':

@@ -6,7 +6,13 @@
 
 (
   node[cuisine~"kebab|pizza"](area.fi);
+  way[cuisine~"kebab|pizza"](area.fi);
+  rel[cuisine~"kebab|pizza"](area.fi);
+  node[name~"kebab|pizza",i](area.fi);
+  way[name~"kebab|pizza",i](area.fi);
+  rel[name~"kebab|pizza",i](area.fi);
 );
+(._;>;);
 out body qt;
 
 (
