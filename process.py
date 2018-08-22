@@ -31,12 +31,17 @@ def node_list_to_poly(nodes, node_id_list):
 	]
 
 
+ACCEPTED_WORDS = {'pizza', 'pizze', 'kebap', 'kebab'}
+
+
 def is_restaurant(tags):
-	if 'cuisine' in tags:
-		return True
-	name = (get_name(tags) or '').lower()
-	if 'pizza' in name or 'kebab' in name:
-		return True
+	for s in (
+		(tags.get('cuisine') or '').lower(),
+		(get_name(tags) or '').lower(),
+	):
+		for word in ACCEPTED_WORDS:
+			if word in s:
+				return True
 	return False
 
 
@@ -110,20 +115,20 @@ def read_bounds_and_restaurants():
 
 def main():
 	ap = argparse.ArgumentParser()
-	ap.add_argument('--mode', default='summary', choices=('summary', 'full', 'answer'))
 	args = ap.parse_args()
 	bounds, restaurants = read_bounds_and_restaurants()
 	
-	cw = csv.writer(sys.stdout)
-
-	if args.mode == 'summary':
+	with open('data.csv', 'w') as outf:
+		cw = csv.writer(outf)
 		for bound in sorted(bounds.values(), key=itemgetter('name')):
 			cw.writerow((
 				bound['name'],
 				bound['pop'],
 				len(bound['restaurants']),
 			))
-	if args.mode == 'answer':
+	
+	with open('answer.csv', 'w') as outf:
+		cw = csv.writer(outf)
 		for bound in sorted(bounds.values(), key=lambda b: int(b.get('pop') or 0), reverse=True):
 			if bound['pop'] and int(bound['pop']) > 1000 and len(bound['restaurants']) == 0:
 				cw.writerow((
@@ -131,7 +136,9 @@ def main():
 					bound['pop'],
 					len(bound['restaurants']),
 				))
-	elif args.mode == 'full':
+	
+	with open('full.csv', 'w') as outf:
+		cw = csv.writer(outf)
 		for bound in sorted(bounds.values(), key=itemgetter('name')):
 			for restaurant in bound['restaurants']:
 				latlon = restaurant['latlon']

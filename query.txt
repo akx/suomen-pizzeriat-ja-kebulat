@@ -1,23 +1,21 @@
 [out:json];
+area["ISO3166-1"="FI"][admin_level=2] -> .fi;
+rel[admin_level=8](area.fi); (._;>;); out body qt;
 
 (
-  area["ISO3166-1"="FI"][admin_level=2];
-) -> .fi;
+  node[amenity~"restaurant|fast_food"](area.fi);
+  node[cuisine~"kebab|kebap|pizza"](area.fi);
+  node[name~"kebab|kebap|pizz",i](area.fi);
+);
+out body qt;
 
 (
-  node[cuisine~"kebab|pizza"](area.fi);
-  way[cuisine~"kebab|pizza"](area.fi);
-  rel[cuisine~"kebab|pizza"](area.fi);
-  node[name~"kebab|pizza",i](area.fi);
-  way[name~"kebab|pizza",i](area.fi);
-  rel[name~"kebab|pizza",i](area.fi);
+  rel[amenity~"restaurant|fast_food"](area.fi);
+  rel[cuisine~"kebab|kebap|pizza"](area.fi);  
+  rel[name~"kebab|kebap|pizz",i](area.fi);
+  way[amenity~"restaurant|fast_food"](area.fi);
+  way[cuisine~"kebab|kebap|pizza"](area.fi);
+  way[name~"kebab|kebap|pizz",i](area.fi);
 );
 (._;>;);
-out body qt;
-
-(
-  rel[admin_level=8](area.fi);
-);
-out body qt;
->;
 out body qt;
