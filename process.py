@@ -110,7 +110,7 @@ def read_bounds_and_restaurants():
 
 def main():
 	ap = argparse.ArgumentParser()
-	ap.add_argument('--mode', default='summary', choices=('summary', 'full'))
+	ap.add_argument('--mode', default='summary', choices=('summary', 'full', 'answer'))
 	args = ap.parse_args()
 	bounds, restaurants = read_bounds_and_restaurants()
 	
@@ -123,6 +123,14 @@ def main():
 				bound['pop'],
 				len(bound['restaurants']),
 			))
+	if args.mode == 'answer':
+		for bound in sorted(bounds.values(), key=lambda b: int(b.get('pop') or 0), reverse=True):
+			if bound['pop'] and int(bound['pop']) > 1000 and len(bound['restaurants']) == 0:
+				cw.writerow((
+					bound['name'],
+					bound['pop'],
+					len(bound['restaurants']),
+				))
 	elif args.mode == 'full':
 		for bound in sorted(bounds.values(), key=itemgetter('name')):
 			for restaurant in bound['restaurants']:
