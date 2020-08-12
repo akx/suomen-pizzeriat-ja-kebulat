@@ -7,12 +7,13 @@ import sys
 import tqdm
 import ujson
 
-
-p1 = pyproj.Proj(init='EPSG:4326')  # WGS:84
-p2 = pyproj.Proj(init='EPSG:3067')  # ETRS-TM35FIN
+wgs_to_etrs_xform = pyproj.Transformer.from_crs(
+	'EPSG:4326',  # WGS:84
+	'EPSG:3067',  # ETRS-TM35FIN
+)
 
 def to_etrs(*, lat, lon):
-	return pyproj.transform(p1, p2, lat, lon)
+	return wgs_to_etrs_xform.transform(lat, lon)
 
 
 def get_name(tags):

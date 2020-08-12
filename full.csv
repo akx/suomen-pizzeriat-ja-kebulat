@@ -68,7 +68,7 @@ Espoo,Leppävaaran pizzapalvelu,60.2112433,24.8229099
 Espoo,Kotipizza Sello,60.2181202,24.8105547
 Espoo,King Kebab,60.2207654,24.8131618
 Espoo,Stadin kebab,60.2188004,24.8126354
-Espoo,Ghetto Street Food Bar,60.2206465,24.812777099999998
+Espoo,Ghetto Street Food Bar,60.2206465,24.8127771
 Espoo,Leppävaaran kuningas,60.2239207,24.812411
 Espoo,Pizza Service,60.2212959,24.8156568
 Espoo,Pizza Cornar,60.2205417,24.8127933
@@ -167,7 +167,7 @@ Helsinki,Ravintola Salpimienta,60.184836,24.9532716
 Helsinki,Kotipizza Kallio Porthaninkatu,60.1830127,24.9531246
 Helsinki,Sivuraide,60.1815672,24.9510919
 Helsinki,Ravintola Mare Chiaro,60.1820621,24.9553904
-Helsinki,Americana Pizzeria,60.1805629,24.949938799999998
+Helsinki,Americana Pizzeria,60.1805629,24.9499388
 Helsinki,Frutti di mare,60.191201,24.9448683
 Helsinki,Onni Pizzeria,60.1883515,24.9468144
 Helsinki,Pizzeria Romano,60.1877545,24.9480613
@@ -305,7 +305,7 @@ Hämeenlinna,Ravintola BerFin,60.9935784,24.4498537
 Hämeenlinna,Rax Buffet,60.9941581,24.4562915
 Hämeenlinna,Kimene,60.9969989,24.4632235
 Hämeenlinna,Don Sergio,60.9960226,24.4603387
-Hämeenlinna,Linnan Eka Pizza & Kebab,60.996226899999996,24.4617104
+Hämeenlinna,Linnan Eka Pizza & Kebab,60.9962269,24.4617104
 Hämeenlinna,Steak House,60.995604,24.4643835
 Hämeenlinna,Popino,60.9960881,24.4672705
 Hämeenlinna,Inter Pizza Kebab,60.9975116,24.4663743
@@ -328,7 +328,7 @@ Iisalmi,Bar & Cafe Graceville,63.5575889,27.189359
 Iisalmi,Kotipizza,63.5599561,27.1893876
 Iisalmi,Pizzeria Nisa,63.5581179,27.1890631
 Iisalmi,176514125,,
-Iitti,Sulo,60.888260700000004,26.3421002
+Iitti,Sulo,60.8882607,26.3421002
 Ikaalinen,Pizzeria Kebab Demir,61.7693517,23.070774
 Ilmajoki,Kotipizza,62.7309425,22.5781586
 Imatra,Havanna Pizza Kebab,61.1711782,28.7674705
@@ -466,7 +466,7 @@ Kirkkonummi,Nawros Kebab Pizzeria,60.1224356,24.4564035
 Kirkkonummi,Masalan Pizza Piste,60.1584877,24.5348054
 Kittilä,Kotipizza,67.6471351,24.9186145
 Kittilä,Pizza Tomato,67.6577261,24.9067122
-Kittilä,Ravintola Narran,67.8046265,24.803365200000002
+Kittilä,Ravintola Narran,67.8046265,24.8033652
 Kittilä,Pizza Factory,67.8051968,24.8039901
 Kittilä,Kotipizza,67.8046459,24.8089216
 Kokkola,Mary's La Favorita,63.8264304,23.0719079
@@ -493,7 +493,7 @@ Korsholm,Kotipizza,63.108733,21.594987
 Korsholm,Kotipizza,63.0996821,21.6061667
 Korsholm,Pizzabistro Marco Polo,63.0958661,21.611352
 Korsholm,Pizzeria Babilon,63.0937744,21.6180842
-Korsholm,Vin Kebab Pizzeria,63.092120800000004,21.6194894
+Korsholm,Vin Kebab Pizzeria,63.0921208,21.6194894
 Korsholm,Kotipizza,63.0911889,21.622211
 Korsholm,Kotipizza,63.0954458,21.6138959
 Korsholm,O Sole Mio,63.0972183,21.6178218
@@ -523,7 +523,7 @@ Kouvola,Orient Express,60.9060866,26.6220004
 Kouvola,Kotipizza,60.9066434,26.6261769
 Kouvola,Wanha Kalastaja,60.9075309,26.6219164
 Kouvola,Shams,60.9104205,26.6329956
-Kouvola,Atlas,60.941716,26.618358100000002
+Kouvola,Atlas,60.941716,26.6183581
 Kouvola,PizzaBuffa,60.8717117,26.6577757
 Kouvola,Aseman vintti,60.8661677,26.7042781
 Kouvola,Quick Pizza,60.8678501,26.700859
@@ -540,7 +540,7 @@ Kouvola,Ravintola Loiske,60.8876778,26.7736509
 Kouvola,Istanbul,60.9334852,26.7973592
 Kouvola,Herttareeti,61.0582002,26.4823208
 Kouvola,Kievari Kojamo,61.0893482,26.7945737
-Kouvola,Kar Pizza,61.1137988,26.982393899999998
+Kouvola,Kar Pizza,61.1137988,26.9823939
 Kouvola,Grill & Pizzeria Herkkutupa,,
 Kouvola,Toros Tex-Mex,,
 Kouvola,Kotipizza,,
@@ -645,7 +645,7 @@ Lohja,PizzaBuffa Lohja,60.2484568,24.06394
 Lohja,Kotipizza,60.2497124,24.065561
 Lohja,Lohjan Aseman Pizza Kebab,60.2675667,24.1208927
 Loimaa,Loimaan Kebab Pizzeria,60.8504593,23.0591515
-Loppi,Pizzeria Amore,60.7198928,24.443369099999998
+Loppi,Pizzeria Amore,60.7198928,24.4433691
 Loppi,Ketunkolo,,
 Loviisa,New Roz Pizzeria,60.4559063,26.2289905
 Loviisa,Ceylan Kebab,60.4560116,26.2294384
@@ -684,7 +684,7 @@ Mäntsälä,Elvis Pizza Burger,60.6342466,25.3156302
 Mäntsälä,Istanbul-pizzeria,60.6362564,25.3200002
 Mäntsälä,La Sirena-pizzeria,60.6357008,25.3172143
 Mäntsälä,Kotipizza,60.6365228,25.322896
-Mäntsälä,Pizzataxi,60.635654099999996,25.3177542
+Mäntsälä,Pizzataxi,60.6356541,25.3177542
 Mäntyharju,Dada,61.418027,26.879227
 Mäntyharju,Chili,,
 Naantali,Pizza&Pasta,60.4727417,22.0052876
@@ -825,7 +825,7 @@ Rauma,Pizzeria Riviera,61.1296575,21.5003342
 Rauma,Deniss Kebab & Pizza,61.1324045,21.4962425
 Rauma,Pizzeria La Bamba,61.1292421,21.5064579
 Rauma,Kebab-Pizzeria Selin,61.1396983,21.5139298
-Rauma,NamNam Kebab Pizzeria,61.1302159,21.556237199999998
+Rauma,NamNam Kebab Pizzeria,61.1302159,21.5562372
 Rauma,Lapin Kebab-Pizzeria,61.0996571,21.8369084
 Rauma,Kourujärven kebab & pizza,,
 Rautalampi,Rautapannu,62.6242066,26.8272472
@@ -885,7 +885,6 @@ Seinäjoki,07 Kebab House,62.7912411,22.8441608
 Seinäjoki,Valentina pizzeria,62.793359,22.8362927
 Seinäjoki,Kototie Pizzeria,62.776488,22.8689387
 Seinäjoki,Pizza Buffa,62.8056324,22.8764682
-Siikajoki,Finlandia,64.683802,24.4767464
 Siikajoki,Pizzeria Alto Mare,64.6853064,24.4785474
 Siikajoki,Raahen Kebab-Grilli,,
 Siilinjärvi,Kebab house,62.9727041,27.7031197
@@ -896,6 +895,7 @@ Sipoo,Pizza Express,60.3759961,25.2587609
 Sipoo,Nikinmäen Tähti,,
 Sipoo,Duck Pizza Kebab,,
 Sodankylä,3999298904,67.4174292,26.5937461
+Sotkamo,Classic Pizza,64.148626,28.2350882
 Sotkamo,Vuokatin Pizzakebab,64.1403274,28.2676791
 Sotkamo,Kotipizza,64.1311717,28.3832461
 Sotkamo,Sotkamon Pizza & kebab,64.1309122,28.3889452
@@ -987,6 +987,7 @@ Tornio,Hullu Härkä,,
 Turku,kebab pizzeria quattro,60.3942877,22.2216664
 Turku,Kotipizza,60.4495919,22.2028829
 Turku,Center Kebab Pizzeria,60.4798684,22.1586217
+Turku,Kotipizza,60.4858355,22.1670742
 Turku,Classic Pizza Restaurant,60.4898622,22.1984572
 Turku,Kotipizza,60.472182,22.2165201
 Turku,Länsi kebab & pizzeria,60.4736125,22.2243371
@@ -1042,7 +1043,6 @@ Turku,Pizzeria Ali Baba,60.4552983,22.3008452
 Turku,Nummis Kebab & Pizzeria,60.4554504,22.3033694
 Turku,Treffi,60.4611723,22.2973803
 Turku,FC Kebab,60.4561877,22.3090849
-Turku,Keisari kebab & pizzeria,60.4589817,22.3238866
 Turku,Arina Ravintola,60.4691677,22.23589
 Turku,Pizza Perez,60.4720285,22.2820812
 Turku,Hallis Kebab & Pizzeria,60.4697301,22.3061361
@@ -1051,7 +1051,6 @@ Turku,Rio Kebab Pizzeria,,
 Turku,Airin Kebab Pizzeria,,
 Turku,Kupittaan Kebab Pizzeria,,
 Turku,Kebab yard parking,,
-Turku,Keisari Kebab Pizzeria,,
 Tuusula,Pizzataxi,60.3744302,25.0180927
 Tuusula,Kotipizza,60.4002241,25.0206452
 Tuusula,Hyrylän Pizza,60.4000653,25.0204876
@@ -1062,10 +1061,10 @@ Tuusula,Haarajoen pizza&kebab,60.4989406,25.1462894
 Tuusula,Pizzeria Quattro,60.5527085,24.9656208
 Ulvila,Junus Kebab,61.4292073,21.875893
 Ulvila,Ulvilan Metro Kebab,61.4311319,21.8739924
-Urjala,Adam Kebab Pizzeria,61.0801666,23.548455099999998
+Urjala,Adam Kebab Pizzeria,61.0801666,23.5484551
 Uusikaupunki,Eka kebab,60.8002998,21.4092804
 Uusikaupunki,Kotipizza,60.8001441,21.4092429
-Vaala,Pizzeria Finlandiano,64.5597608,26.841745799999998
+Vaala,Pizzeria Finlandiano,64.5597608,26.8417458
 Vaasa,Pizzeria Bella Vista,63.1083868,21.5929387
 Vaasa,Körv-Gorans,63.1084692,21.5934862
 Vaasa,Kotipizza,63.108733,21.594987
@@ -1073,7 +1072,7 @@ Vaasa,Kotipizza,63.0775375,21.6524355
 Vaasa,Kotipizza,63.0996821,21.6061667
 Vaasa,Pizzabistro Marco Polo,63.0958661,21.611352
 Vaasa,Pizzeria Babilon,63.0937744,21.6180842
-Vaasa,Vin Kebab Pizzeria,63.092120800000004,21.6194894
+Vaasa,Vin Kebab Pizzeria,63.0921208,21.6194894
 Vaasa,Kotipizza,63.0911889,21.622211
 Vaasa,Kotipizza,63.0954458,21.6138959
 Vaasa,O Sole Mio,63.0972183,21.6178218
@@ -1137,7 +1136,7 @@ Varkaus,Iskender Pizza & Kebab,62.316775,27.8699759
 Vesilahti,Pizzeria Makasiini,61.3090532,23.6189099
 Vihti,Oliivi Kebab Pizzeria,60.333248,24.3195066
 Vihti,Gobustan,60.335101,24.3188007
-Vihti,Ramon,60.332664199999996,24.3264937
+Vihti,Ramon,60.3326642,24.3264937
 Vihti,Formula Pizza,60.3336143,24.3256094
 Vihti,Ismet - Kebab & Pizzaland,60.3367159,24.3212685
 Vihti,Ismet,60.4184253,24.3173718
