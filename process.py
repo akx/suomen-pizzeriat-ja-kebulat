@@ -122,11 +122,13 @@ def main():
 
     with open("data.csv", "w") as outf:
         cw = csv.writer(outf)
+        cw.writerow(["City", "Population", "RestaurantCount"])
         for bound in sorted(bounds.values(), key=itemgetter("name")):
             cw.writerow((bound["name"], bound["pop"], len(bound["restaurants"]),))
 
     with open("answer.csv", "w") as outf:
         cw = csv.writer(outf)
+        cw.writerow(["City", "Population", "RestaurantCount"])
         for bound in sorted(
             bounds.values(), key=lambda b: int(b.get("pop") or 0), reverse=True
         ):
@@ -139,6 +141,7 @@ def main():
 
     with open("full.csv", "w") as outf:
         cw = csv.writer(outf)
+        cw.writerow(["City", "Restaurant", "Lat", "Lon"])
         for bound in sorted(bounds.values(), key=itemgetter("name")):
             for restaurant in bound["restaurants"]:
                 latlon = restaurant["latlon"]
