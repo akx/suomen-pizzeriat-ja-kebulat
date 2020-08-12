@@ -115,29 +115,43 @@ def read_bounds_and_restaurants():
     return (bounds, restaurants)
 
 
+def write_result_csv(outf, bounds):
+    cw = csv.writer(outf)
+    cw.writerow(["City", "Population", "RestaurantCount", "RestaurantPerCapita"])
+    for bound in bounds:
+        n_restaurants = len(bound["restaurants"])
+        population = int(bound.get("pop") or 0)
+        cw.writerow(
+            (
+                bound["name"],
+                population,
+                n_restaurants,
+                "{:.7f}".format(n_restaurants / population) if population else None,
+            )
+        )
+
+
 def main():
     ap = argparse.ArgumentParser()
     args = ap.parse_args()
     bounds, restaurants = read_bounds_and_restaurants()
 
     with open("data.csv", "w") as outf:
-        cw = csv.writer(outf)
-        cw.writerow(["City", "Population", "RestaurantCount"])
-        for bound in sorted(bounds.values(), key=itemgetter("name")):
-            cw.writerow((bound["name"], bound["pop"], len(bound["restaurants"]),))
+        write_result_csv(outf, sorted(bounds.values(), key=itemgetter("name")))
 
     with open("answer.csv", "w") as outf:
-        cw = csv.writer(outf)
-        cw.writerow(["City", "Population", "RestaurantCount"])
-        for bound in sorted(
-            bounds.values(), key=lambda b: int(b.get("pop") or 0), reverse=True
-        ):
-            if (
+        filtered_bounds = [
+            bound
+            for bound in sorted(
+                bounds.values(), key=lambda b: int(b.get("pop") or 0), reverse=True
+            )
+            if not (
                 bound["pop"]
                 and int(bound["pop"]) > 1000
                 and len(bound["restaurants"]) == 0
-            ):
-                cw.writerow((bound["name"], bound["pop"], len(bound["restaurants"]),))
+            )
+        ]
+        write_result_csv(outf, filtered_bounds)
 
     with open("full.csv", "w") as outf:
         cw = csv.writer(outf)
