@@ -30,7 +30,7 @@ def node_list_to_poly(nodes, node_id_list):
     ]
 
 
-ACCEPTED_WORDS = {"pizza", "pizze", "kebap", "kebab"}
+ACCEPTED_WORDS = {"pizza", "pizze", "kebap", "kebab", "doner", "döner", "shawarma", "gyros"}
 
 
 def is_restaurant(tags):
