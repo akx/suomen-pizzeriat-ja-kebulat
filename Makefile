@@ -3,5 +3,5 @@
 data.csv: kebulat.osm-json process.py
 	python3 process.py
 
-kebulat.osm-json: query.txt
-	curl -vo $@ --data @query.txt 'http://overpass-api.de/api/interpreter'
+kebulat.osm-json: query.overpassql
+	curl -vo $@ --data @query.overpassql 'http://overpass-api.de/api/interpreter'
